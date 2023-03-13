@@ -1,4 +1,4 @@
-package com.project.board.exceptions;
+package com.project.board.aop;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
