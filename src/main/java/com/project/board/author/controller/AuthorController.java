@@ -5,6 +5,9 @@ import com.project.board.author.domain.AuthorDto;
 import com.project.board.author.domain.Post;
 import com.project.board.author.service.AuthorService;
 import com.project.board.author.service.PostService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +20,31 @@ import org.springframework.web.client.HttpClientErrorException;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@Slf4j /* 로그 찍는 어노테이션*/
 @Controller
 public class AuthorController {
     private final AuthorService authorService;
     private final PostService postService;
 
+////    logger 생성 방법1
+//    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     public AuthorController(AuthorService authorService, PostService postService) {
         this.authorService = authorService;
         this.postService = postService;
+    }
+
+    @GetMapping("/test")
+    public void test(){
+        System.out.println("test log");
+        //        slf4j 라이브러리를 활용한 현업에서 사용하는 logging 복사
+//        logger.trace("test trace log");
+//        logger.debug("test debug log");
+//        logger.info("test info log");
+//        logger.error("test error log");
+
+//        어노테이션을 활용하여 사용
+        log.trace("test trace log");
     }
 
     @GetMapping("/author/list")
@@ -94,6 +114,7 @@ public class AuthorController {
             Author author = authorService.findById(id).orElseThrow(EntityNotFoundException::new);
             model.addAttribute("author", author);
         }catch (EntityNotFoundException e){
+            log.error("findById error : "+e.getMessage());
             throw new EntityNotFoundException("not found Exception");
         }
 //        Author author = authorService.findById(id);
@@ -103,4 +124,9 @@ public class AuthorController {
     }
 //          레프트조인 이너조인 개념 다시 공부
 
+
+    @GetMapping("/author/login")
+    public String login(){
+        return "/author/loginPage";
+    }
 }

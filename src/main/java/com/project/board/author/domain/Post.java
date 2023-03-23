@@ -3,6 +3,7 @@ package com.project.board.author.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,13 +24,21 @@ public class Post {
 
     private LocalDateTime createDate;
 
+    @Setter
+    private String scheduled;
+
+    private LocalDateTime scheduledTime;
+
     @Builder
-    public Post(Long id, String title, String contents, LocalDateTime createDate, Author author) {
+    public Post(Long id, String title, String contents, LocalDateTime createDate, Author author,
+                String scheduled, LocalDateTime scheduledTime) {
         this.id = id;
         this.title = title;
         this.contents = contents;
         this.createDate = LocalDateTime.now();
         this.author = author;
+        this.scheduled = scheduled;
+        this.scheduledTime = scheduledTime;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

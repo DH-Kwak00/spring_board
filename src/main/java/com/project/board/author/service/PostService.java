@@ -39,4 +39,8 @@ public class PostService {
     public List<Post> findByAuthor_id(Long id){
         return postRepository.findByAuthor_id(id);
     }
+
+    public List<Post> findByScheduled(String scheduled){
+        return postRepository.findByScheduled(scheduled);
+    }
 }

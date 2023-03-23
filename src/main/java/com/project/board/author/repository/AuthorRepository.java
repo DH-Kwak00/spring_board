@@ -12,6 +12,6 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
 
 //    jpql을 통해 raw 쿼리를 생성 : sql 과는 약간 다르다. (jpql만의 문법이 따로 있음)
 
-    @Query("select distinct a from Author a join fetch a.posts")
+    @Query("select distinct a from Author a left join fetch a.posts")
     List<Author> findAllFetchJoin();
 }

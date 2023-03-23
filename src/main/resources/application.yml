@@ -7,12 +7,15 @@ spring:
     password: test1234
 
   jpa:
-    show-sql: true
+#    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         format_sql: true
+#        TRACE < debug < info < error
+#        예를 들어 에러로 설정하면 에러 이하인 log는 나오지 않는다
+#        예를 들어 디버그로 설정하면 trace는 나오지 않고 debug이상만 출력
 
 logging:
   level:

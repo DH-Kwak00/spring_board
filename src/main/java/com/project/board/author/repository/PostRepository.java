@@ -8,4 +8,6 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findByAuthor_id(Long author_id);
+
+    List<Post> findByScheduled(String scheduled);
 }

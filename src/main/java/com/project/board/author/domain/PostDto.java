@@ -11,4 +11,6 @@ public class PostDto {
     private String contents;
     private String createDate;
     private String email;
+    private String scheduled;
+    private String scheduledTime;
 }
